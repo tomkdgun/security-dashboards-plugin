@@ -11,7 +11,7 @@ set -ex
 
 # vars / libs
 PLUGIN_NAME=$(basename "$PWD")
-PLUGIN_PATH=`realpath ../OpenSearch-Dashboards/plugins/$PLUGIN_NAME`
+PLUGIN_PATH="$(cd "$(dirname "$PWD")" && pwd)/OpenSearch-Dashboards/plugins/$PLUGIN_NAME"
 
 function usage() {
     echo "Usage: $0 [args]"
@@ -93,7 +93,7 @@ fi
 mkdir -p $OUTPUT/plugins
 # TODO: [CLEANUP] Needed OpenSearch Dashboards git repo to build the required modules for plugins
 # This makes it so there is a dependency on having Dashboards pulled already.
-cp -r ../$PLUGIN_NAME/ ../OpenSearch-Dashboards/plugins
+cp -r ../$PLUGIN_NAME ../OpenSearch-Dashboards/plugins
 echo "BUILD MODULES FOR $PLUGIN_NAME"
 CURR_DIR=`pwd`
 # Bootstrap loose to allow different cypress version
